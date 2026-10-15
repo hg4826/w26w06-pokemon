@@ -1,22 +1,17 @@
 import { Link } from "react-router"
 import type { Route } from "./+types/detail";
+import { getPokemon } from "~/api/pokemon";
 
-// NOTE: 이렇게 하드 코딩하고, 복사 붙여넣기 하면 안됨!
-const pokemons = [
-  { id: 1, name: "이상해씨", image: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png" },
-  { id: 4, name: "파이리", image: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/4.png" },
-  { id: 7, name: "꼬부기", image: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/7.png" },
-  { id: 25, name: "피카츄", image: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/25.png" },
-  { id: 29, name: "니드런♀", image: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/29.png" },
-  { id: 32, name: "니드런♂", image: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/32.png" },
-  { id: 133, name: "이브이", image: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/133.png" },
-  { id: 150, name: "뮤츠", image: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/150.png" },
-  { id: 151, name: "뮤", image: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/151.png" },
-  { id: 152, name: "치코리타", image: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/152.png" },
-];
+export async function loader({ params }: Route.LoaderArgs) {
+  try {
+    return { pokemon: await getPokemon(Number(params.id)) }
+  } catch {
+    return { pokemon: null }
+  }
+}
 
-export default function Detail({ params }: Route.ComponentProps) {
-  const pokemon = pokemons.find(p => p.id === Number(params.id))
+export default function Detail({ loaderData }: Route.ComponentProps) {
+  const { pokemon } = loaderData
   if (!pokemon) {
     return <div className="min-h-screen bg-slate-700 p-6">포켓몬을 찾을 수 없습니다.</div>
   }
