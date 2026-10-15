@@ -2,7 +2,7 @@ import { Link } from "react-router"
 import type { Route } from "./+types/list";
 import { getPokemonList } from "~/api/pokemon";
 
-export async function loader() {
+export async function clientLoader() {
   return { pokemons: await getPokemonList() }
 }
 
@@ -11,6 +11,14 @@ export function meta({}: Route.MetaArgs) {
     { title: "포켓몬" },
     { name: "description", content: "포켓몬 도감" },
   ];
+}
+
+export function HydrateFallback() {
+  return (
+    <div className="flex min-h-screen items-center justify-center bg-slate-50 text-slate-400">
+      불러오는 중...
+    </div>
+  )
 }
 
 export default function List({ loaderData }: Route.ComponentProps) {

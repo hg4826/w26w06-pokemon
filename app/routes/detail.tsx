@@ -2,12 +2,20 @@ import { Link } from "react-router"
 import type { Route } from "./+types/detail";
 import { getPokemon } from "~/api/pokemon";
 
-export async function loader({ params }: Route.LoaderArgs) {
+export async function clientLoader({ params }: Route.ClientLoaderArgs) {
   try {
     return { pokemon: await getPokemon(Number(params.id)) }
   } catch {
     return { pokemon: null }
   }
+}
+
+export function HydrateFallback() {
+  return (
+    <div className="flex min-h-screen items-center justify-center bg-slate-50 text-slate-400">
+      불러오는 중...
+    </div>
+  )
 }
 
 export default function Detail({ loaderData }: Route.ComponentProps) {
