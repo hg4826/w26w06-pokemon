@@ -1,3 +1,4 @@
+import { Link } from "react-router"
 import type { Route } from "./+types/list";
 
 const pokemons = [
@@ -5,8 +6,8 @@ const pokemons = [
   { id: 4, name: "파이리", image: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/4.png" },
   { id: 7, name: "꼬부기", image: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/7.png" },
   { id: 25, name: "피카츄", image: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/25.png" },
-  { id: 39, name: "니드런♀", image: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/29.png" },
-  { id: 52, name: "니드런♂", image: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/32.png" },
+  { id: 29, name: "니드런♀", image: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/29.png" },
+  { id: 32, name: "니드런♂", image: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/32.png" },
   { id: 133, name: "이브이", image: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/133.png" },
   { id: 150, name: "뮤츠", image: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/150.png" },
   { id: 151, name: "뮤", image: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/151.png" },
@@ -28,7 +29,8 @@ export default function List() {
       </h2>
       <div className="mx-auto grid max-w-6xl grid-cols-2 gap-5 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
         {pokemons.map((pokemon) => (
-          <div
+          <Link
+            to={`detail/${pokemon.id}`}
             key={pokemon.id}
             className="group flex flex-col items-center rounded-2xl border border-slate-200 bg-white p-4
                        shadow-sm transition duration-300 hover:-translate-y-1 hover:border-yellow-400 hover:shadow-lg"
@@ -46,7 +48,7 @@ export default function List() {
             <p className="mt-1 text-lg font-bold text-slate-700 transition-colors group-hover:text-yellow-600">
               {pokemon.name}
             </p>
-          </div>
+          </Link>
         ))}
       </div>
     </div>
