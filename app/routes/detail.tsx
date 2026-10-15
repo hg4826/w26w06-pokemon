@@ -38,6 +38,9 @@ export default function Detail({ loaderData }: Route.ComponentProps) {
         <span className="text-xs bg-yellow-100 text-yellow-700 px-3 py-1 rounded-full">
           No. {pokemon.id}
         </span>
+        {pokemon.description && (
+          <p className="text-slate-600 leading-relaxed break-keep">{pokemon.description}</p>
+        )}
       </div>
     </div>
   )
