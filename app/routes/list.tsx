@@ -13,14 +13,6 @@ export function meta({}: Route.MetaArgs) {
   ];
 }
 
-export function HydrateFallback() {
-  return (
-    <div className="flex min-h-screen items-center justify-center bg-slate-50 text-slate-400">
-      불러오는 중...
-    </div>
-  )
-}
-
 export default function List({ loaderData }: Route.ComponentProps) {
   const { pokemons } = loaderData
   return (

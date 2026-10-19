@@ -41,6 +41,14 @@ export function Layout({ children }: { children: React.ReactNode }) {
   );
 }
 
+export function HydrateFallback() {
+  return (
+    <div className="flex min-h-screen items-center justify-center bg-slate-50 text-slate-400">
+      불러오는 중...
+    </div>
+  )
+}
+
 export default function App() {
   return <Outlet />;
 }

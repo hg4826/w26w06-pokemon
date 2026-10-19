@@ -10,14 +10,6 @@ export async function clientLoader({ params }: Route.ClientLoaderArgs) {
   }
 }
 
-export function HydrateFallback() {
-  return (
-    <div className="flex min-h-screen items-center justify-center bg-slate-50 text-slate-400">
-      불러오는 중...
-    </div>
-  )
-}
-
 export default function Detail({ loaderData }: Route.ComponentProps) {
   const { pokemon } = loaderData
   if (!pokemon) {
